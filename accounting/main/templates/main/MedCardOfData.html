@@ -1,0 +1,34 @@
+
+{% extends "main/base.html" %}
+
+{% block title %}
+<h1>Пацыенты по дате</h1>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.date }}<br>
+        </div>
+    </div>
+    <button type="submit" name="search" class="btn btn-success">Поиск</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">ФИО</th>
+    <th scope="col">Палата</th>
+    <th scope="col">Возраст</th>
+    <th scope="col">Дата поступления</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in records %}
+    <tr align="left">
+        <td>{{ el.name }}</td>
+        <td>{{ el.room }}</td>
+        <td>{{ el.age }}</td>
+        <td>{{ el.date }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

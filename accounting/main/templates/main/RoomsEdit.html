@@ -1,0 +1,26 @@
+﻿{% extends 'main/base.html' %}
+
+{% block title %}
+<h1>Изменить Палату</h1>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.phone }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submitEdit" class="btn btn-success">Сохранить</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">Телефон</th>
+{% endblock %}
+
+{% block grid %}
+<tr>
+    <td>{{ record.phone }}</td>
+</tr>
+
+{% endblock %}

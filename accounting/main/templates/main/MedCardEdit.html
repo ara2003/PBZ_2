@@ -1,0 +1,55 @@
+﻿{% extends 'main/base.html' %}
+
+{% block title %}
+<h1>Изменить Мед Карту</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            {{ context.form.name }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.diagnos }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.cause }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.other }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.gender }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.age }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.date }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submitEdit" class="btn btn-success">Сохранить</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">ФИО</th>
+    <th scope="col">Диагноз</th>
+    <th scope="col">Причина поступления</th>
+    <th scope="col">Пол</th>
+    <th scope="col">Возраст</th>
+    <th scope="col">Дата</th>
+    <th scope="col">Остальное</th>
+{% endblock %}
+
+{% block grid %}
+<tr>
+    <td>{{ record.name }}</td>
+    <td>{{ record.diagnos }}</td>
+    <td>{{ record.cause }}</td>
+    <td>{{ record.other }}</td>
+    <td>{{ record.gender }}</td>
+    <td>{{ record.age }}</td>
+    <td>{{ record.date }}</td>
+</tr>
+{% endblock %}

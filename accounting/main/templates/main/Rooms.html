@@ -1,0 +1,37 @@
+﻿{% extends "main/base.html" %}
+
+{% block title %}
+<h1>Палаты</h1>
+<h6>Добавить полату</h6>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.phone }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submitProd" class="btn btn-success">Добавить</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+<th scope="col">ID</th>
+<th scope="col">Телефон</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in rooms %}
+    <tr align="left">
+        <td>{{ el.id }}</td>
+        <td>{{ el.phone }}</td>
+        <td align="right">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="Edit" value="{{ el.id }}" class="btn btn-primary">Изменить</button>
+                <button type="submit" name="Delete" value="{{ el.id }}" class="btn btn-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,45 @@
+﻿{% extends 'main/base.html' %}
+
+{% block title %}
+
+<h1>Переводы</h1>
+<h6>Добавить переводы</h6>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.medCard }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.room }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.date }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submit" class="btn btn-success">Добавить</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">Пациент</th>
+    <th scope="col">Палата</th>
+    <th scope="col">Дата</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in moves %}
+    <tr>
+        <td>{{ el.medCard.name }}</td>
+        <td>{{ el.room.id }}</td>
+        <td>{{ el.date }}</td>
+        <td align="right">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="Delete" value="{{ el.id }}" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}

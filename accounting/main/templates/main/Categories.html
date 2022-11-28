@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ name }}
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">Category</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in records %}
+    <tr>
+        <td>{{ el }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

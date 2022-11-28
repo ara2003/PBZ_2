@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+<h1>Мед Карты</h1>
+<h6>Добавить Мед Карту</h6>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.name }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.diagnos }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.cause }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.gender }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.age }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.date }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.other }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submit" class="btn btn-success">Добавить</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">ID</th>
+    <th scope="col">ФИО</th>
+    <th scope="col">Диагноз</th>
+    <th scope="col">Причина поступления</th>
+    <th scope="col">Пол</th>
+    <th scope="col">Возраст</th>
+    <th scope="col">Дата</th>
+    <th scope="col">Остальное</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in med_cards %}
+    <tr align="left">
+        <td>{{ el.id }}</td>
+        <td>{{ el.name }}</td>
+        <td>{{ el.diagnos }}</td>
+        <td>{{ el.cause }}</td>
+        <td>{{ el.gender }}</td>
+        <td>{{ el.age }}</td>
+        <td>{{ el.date }}</td>
+        <td>{{ el.other }}</td>
+        <td align="right">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="Edit" value="{{ el.id }}" class="btn btn-primary">Изменить</button>
+                <button type="submit" name="Delete" value="{{ el.id }}" class="btn btn-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}

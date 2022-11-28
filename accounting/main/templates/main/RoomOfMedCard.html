@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+<h1>Палата пациента</h1>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.name }}<br>
+        </div>
+    </div>
+    <button type="submit" name="search" class="btn btn-success">Поиск</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">ID</th>
+    <th scope="col">Телефон</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in rooms %}
+    <tr align="left">
+        <td>{{ el.id }}</td>
+        <td>{{ el.phone }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

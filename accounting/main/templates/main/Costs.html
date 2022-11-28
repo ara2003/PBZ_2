@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ name }}
+<h6>Choose Date</h6>
+<form method="post">
+    {% csrf_token %}        
+    <div class="row">
+        <div class="col">
+            {{ context.form.firstDate }}<br>
+        </div>
+        <div class="col">
+            {{ context.form.secondDate }}<br>
+        </div>
+    </div>
+    <button type="submit" name="submit" class="btn btn-success">Find</button>
+    <span>{{ context.error }}</span>
+</form>
+{% endblock %}
+
+{% block headers %}
+    <th scope="col">Name</th>
+    <th scope="col">Date</th>
+    <th scope="col">Selling Price</th>
+    <th scope="col">Factory</th>
+{% endblock %}
+
+{% block grid %}
+    {% for el in records %}
+    <tr>
+        <td>{{ el.name }}</td>
+        <td>{{ el.date }}</td>
+        <td>{{ el.sellingPrice }}</td>
+        <td>{{ el.factory }}</td>
+    </tr>
+    {% endfor %}
+
+{% endblock %}
